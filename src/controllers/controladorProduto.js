@@ -1,5 +1,6 @@
 const { json } = require('sequelize');
 const Produto = require('../models/modeloProduto');
+
 const criarProduto = async (req, res) => {
   try {
     
