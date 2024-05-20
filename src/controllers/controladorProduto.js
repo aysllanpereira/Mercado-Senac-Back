@@ -17,16 +17,21 @@ const criarProduto = async (req, res) => {
 
 const obterProduto = async (req, res) => {
   try {
-    const { idProduto } = req.body;
-
+    const idProduto = req.body.idProduto;
+    const nomeProduto = req.body.nomeProduto;
+    
     if (idProduto) {
       const produto = await Produto.findByPk(idProduto);
       res.json(produto);
-    };
+  
+    } else if(nomeProduto) {
+      const produto = await Produto.findOne({ where: { nome: nomeProduto}});
+      res.json(produto)
+    } else {
+      const produtos = await Produto.findAll();
+      res.json(produtos);
+    }
     
-    const produtos = await Produto.findAll();
-    res.json(produtos);
-
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

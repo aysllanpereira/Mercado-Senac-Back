@@ -18,6 +18,7 @@ const Produto = sequelize.define('Produto', {
   codigo_de_barras: {
     type: DataTypes.NUMBER,
     allowNull: false,
+    unique: true,
   }
 });
 
