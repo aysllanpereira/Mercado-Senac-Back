@@ -18,14 +18,14 @@ const criarProduto = async (req, res) => {
 const obterProduto = async (req, res) => {
   try {
     const idProduto = req.body.idProduto;
-    const nomeProduto = req.body.nomeProduto;
+    const nome = req.query.nome;
     
     if (idProduto) {
       const produto = await Produto.findByPk(idProduto);
       res.json(produto);
   
-    } else if(nomeProduto) {
-      const produto = await Produto.findOne({ where: { nome: nomeProduto}});
+    } else if(nome) {
+      const produto = await Produto.findOne({ where: { nome: nome}});
       res.json(produto)
     } else {
       const produtos = await Produto.findAll();
@@ -62,19 +62,20 @@ const apagarProduto = async (req, res) => {
 
 const editarProdutos = async (req, res) => {
   try {
-    const { idProduto, nomeProduto, precoProduto } = req.body;
+    const { id, nome, preco, foto } = req.body;
 
-    if(!idProduto && !nomeProduto && !precoProduto ) throw new Error ("id, nome. preco são obrigatórios");
+    if(!id && !nome && !preco && !foto) throw new Error ("id, nome. preco são obrigatórios");
 
-    const produto = await Produto.findByPk(idProduto);
+    const produto = await Produto.findByPk(id);
 
     if(!produto) throw new Error ("Produto não encontrado");
-
     produto.update ({
-      nome: nomeProduto || produto.nome,
-      preco: precoProduto || produto.preco
+      nome: nome || produto.nome,
+      preco: preco || produto.preco,
+      foto: foto || produto.foto
     })
-
+    console.log("foto = ", produto.foto)
+    
     res.status(201).json(produto);
 
   } catch (error) {
