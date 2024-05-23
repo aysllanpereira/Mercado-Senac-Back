@@ -23,7 +23,6 @@ const obterProduto = async (req, res) => {
     if (idProduto) {
       const produto = await Produto.findByPk(idProduto);
       res.json(produto);
-  
     } else if(nome) {
       const produto = await Produto.findOne({ where: { nome: nome}});
       res.json(produto)
@@ -69,7 +68,8 @@ const editarProdutos = async (req, res) => {
     const produto = await Produto.findByPk(id);
 
     if(!produto) throw new Error ("Produto não encontrado");
-    produto.update ({
+    
+    await produto.update ({
       nome: nome || produto.nome,
       preco: preco || produto.preco,
       foto: foto || produto.foto
