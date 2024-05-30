@@ -8,13 +8,8 @@ const Pedido = sequelize.define('Pedido', {
     allowNull: false,
   },
 
-  telefone:{
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
   valor_total: {
-    type: DataTypes.DECIMAL(10, 2),
+    type: DataTypes.FLOAT,
     allowNull: false,
   },
 
@@ -23,7 +18,12 @@ const Pedido = sequelize.define('Pedido', {
     allowNull: false,
   },
 
-  itens:{
+  forma_pagamento: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  itens: {
     type:DataTypes.TEXT,
     allowNull: true
   },
