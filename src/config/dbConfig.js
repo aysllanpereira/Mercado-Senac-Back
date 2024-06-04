@@ -9,13 +9,12 @@ const sequelize = new Sequelize({
   storage: configEnv.DB_STORAGE,
   logging: configEnv.DB_LOGGING,
   host: configEnv.DB_HOST,
+  port: configEnv.DB_PORT,
   username: configEnv.DB_USERNAME,
   password: configEnv.DB_PASSWORD,
   database: configEnv.DB_NAME
 });
 
-// A função SYNC só é recomendada para projetos na fase de testes, como por exemplo o uso do sqlit3
-// Ao utilizar um banco de produção, crie suas tabelas manualmente e comente esse trecho de código
 sequelize.sync()
   .then(() => {
     console.log('Banco de dados sincronizado com sucesso');
