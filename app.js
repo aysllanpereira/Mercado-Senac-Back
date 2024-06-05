@@ -10,6 +10,10 @@ app.use(cors ({
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.status(200).send('Servidor 100% ativo!')
+});
+
 // Rotas da API
 app.use('/api', rotas);
 
