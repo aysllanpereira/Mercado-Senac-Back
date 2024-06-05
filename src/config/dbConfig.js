@@ -15,12 +15,12 @@ const sequelize = new Sequelize({
   database: configEnv.DB_NAME
 });
 
-sequelize.sync()
-  .then(() => {
-    console.log('Banco de dados sincronizado com sucesso');
-  })
-  .catch(err => {
-    console.error('Erro ao sincronizar o banco de dados:', err);
-  });
+// sequelize.sync()
+//   .then(() => {
+//     console.log('Banco de dados sincronizado com sucesso');
+//   })
+//   .catch(err => {
+//     console.error('Erro ao sincronizar o banco de dados:', err);
+//   });
 
 module.exports = sequelize;

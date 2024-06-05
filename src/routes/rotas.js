@@ -11,4 +11,6 @@ router.put('/produtos', controladorProduto.editarProdutos);
 router.post('/pedido', controladorPedido.criarPedido);
 router.get('/pedido', controladorPedido.obterPedido);
 
+// router.get('/produto', )
+
 module.exports = router;
