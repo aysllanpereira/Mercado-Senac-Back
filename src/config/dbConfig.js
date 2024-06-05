@@ -12,7 +12,13 @@ const sequelize = new Sequelize({
   port: configEnv.DB_PORT,
   username: configEnv.DB_USERNAME,
   password: configEnv.DB_PASSWORD,
-  database: configEnv.DB_NAME
+  database: configEnv.DB_NAME,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 });
 
 // sequelize.sync()
