@@ -5,7 +5,7 @@ exports.criarPedido = async (req, res) => {
     try {
       const { name, addres, payment } = req.body;
       const carrinho = req.body.carrinho;
-      console.log("aqui = ", req.body)
+      // console.log("aqui = ", req.body)
       let valor = carrinho.reduce((acc, item) => acc + item.preco, 0)
       
       const novoPedido = await Pedido.create({ nome: name, endereco: addres, forma_pagamento: payment, valor_total: valor, itens: JSON.stringify(carrinho) });
